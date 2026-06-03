@@ -191,4 +191,10 @@
   .animate-float-leaf {
     animation: float-leaf 12s ease-in-out infinite;
   }
+
+  .bg-grain {
+    background-image:
+      radial-gradient(circle at 20% 10%, oklch(0.96 0.03 150 / 0.45) 0, transparent 40%),
+      radial-gradient(circle at 80% 0%, oklch(0.95 0.05 85 / 0.35) 0, transparent 45%);
+  }
 }
