@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FarmerIndexRouteImport } from './routes/farmer/index'
+import { Route as FarmerPostStrawIndexRouteImport } from './routes/farmer/post-straw/index'
 import { Route as FarmerDashboardIndexRouteImport } from './routes/farmer/dashboard/index'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const FarmerIndexRoute = FarmerIndexRouteImport.update({
   path: '/farmer/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FarmerPostStrawIndexRoute = FarmerPostStrawIndexRouteImport.update({
+  id: '/farmer/post-straw/',
+  path: '/farmer/post-straw/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FarmerDashboardIndexRoute = FarmerDashboardIndexRouteImport.update({
   id: '/farmer/dashboard/',
   path: '/farmer/dashboard/',
@@ -33,30 +39,39 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/farmer/': typeof FarmerIndexRoute
   '/farmer/dashboard/': typeof FarmerDashboardIndexRoute
+  '/farmer/post-straw/': typeof FarmerPostStrawIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/farmer': typeof FarmerIndexRoute
   '/farmer/dashboard': typeof FarmerDashboardIndexRoute
+  '/farmer/post-straw': typeof FarmerPostStrawIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/farmer/': typeof FarmerIndexRoute
   '/farmer/dashboard/': typeof FarmerDashboardIndexRoute
+  '/farmer/post-straw/': typeof FarmerPostStrawIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/farmer/' | '/farmer/dashboard/'
+  fullPaths: '/' | '/farmer/' | '/farmer/dashboard/' | '/farmer/post-straw/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/farmer' | '/farmer/dashboard'
-  id: '__root__' | '/' | '/farmer/' | '/farmer/dashboard/'
+  to: '/' | '/farmer' | '/farmer/dashboard' | '/farmer/post-straw'
+  id:
+    | '__root__'
+    | '/'
+    | '/farmer/'
+    | '/farmer/dashboard/'
+    | '/farmer/post-straw/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FarmerIndexRoute: typeof FarmerIndexRoute
   FarmerDashboardIndexRoute: typeof FarmerDashboardIndexRoute
+  FarmerPostStrawIndexRoute: typeof FarmerPostStrawIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,6 +90,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FarmerIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/farmer/post-straw/': {
+      id: '/farmer/post-straw/'
+      path: '/farmer/post-straw'
+      fullPath: '/farmer/post-straw/'
+      preLoaderRoute: typeof FarmerPostStrawIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/farmer/dashboard/': {
       id: '/farmer/dashboard/'
       path: '/farmer/dashboard'
@@ -89,6 +111,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FarmerIndexRoute: FarmerIndexRoute,
   FarmerDashboardIndexRoute: FarmerDashboardIndexRoute,
+  FarmerPostStrawIndexRoute: FarmerPostStrawIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { useLanguage } from "@/contexts/language-context";
@@ -738,27 +738,30 @@ function Index() {
                   marginTop: 20,
                 }}
               >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    background: "linear-gradient(135deg, #1a4a2e, #2a6b3e)",
-                    color: "white",
-                    fontSize: 13,
-                    fontWeight: 600,
-                    padding: "10px 20px",
-                    borderRadius: 10,
-                    border: "none",
-                    cursor: "pointer",
-                    boxShadow: "0 4px 14px rgba(26,74,46,0.3)",
-                    fontFamily: "inherit",
-                  }}
-                >
-                  <span style={{ fontSize: 16 }}>🌾</span> Post My Straw
-                </motion.button>
+                <Link to="/farmer/post-straw">
+                  <motion.span
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      background: "linear-gradient(135deg, #1a4a2e, #2a6b3e)",
+                      color: "white",
+                      fontSize: 13,
+                      fontWeight: 600,
+                      padding: "10px 20px",
+                      borderRadius: 10,
+                      border: "none",
+                      cursor: "pointer",
+                      boxShadow: "0 4px 14px rgba(26,74,46,0.3)",
+                      fontFamily: "inherit",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <span style={{ fontSize: 16 }}>🌾</span> Post My Straw
+                  </motion.span>
+                </Link>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
