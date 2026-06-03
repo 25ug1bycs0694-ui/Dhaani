@@ -33,10 +33,10 @@ import farmerAvatar from "@/assets/farmer-avatar.jpg";
 import dhaaniLogo from "@/assets/dhaani-logo.png";
 import strawHero from "@/assets/post-straw/straw-hero.jpg";
 import wheatImg from "@/assets/post-straw/wheat.jpg";
-import paddyImg from "@/assets/post-straw/paddy.jpg";
+
 import sugarcaneImg from "@/assets/post-straw/sugarcane.jpg";
 import maizeImg from "@/assets/post-straw/maize.jpg";
-import { NearbyBuyersPanel } from "@/components/post-straw/nearby-buyers-panel";
+
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -61,7 +61,7 @@ const strawTypes: {
 }[] = [
   { id: "rice", label: "Rice Straw", sub: "Most in-demand", icon: Wheat, img: strawHero },
   { id: "wheat", label: "Wheat Straw", sub: "High fodder value", icon: Sprout, img: wheatImg },
-  { id: "paddy", label: "Paddy Straw", sub: "Bioenergy ready", icon: Leaf, img: paddyImg },
+
   {
     id: "sugarcane",
     label: "Sugarcane Residue",
@@ -85,7 +85,7 @@ export function PostStrawPage() {
   const [price, setPrice] = useState(17000);
   const [minPrice, setMinPrice] = useState(16000);
   const [priceType, setPriceType] = useState<"fixed" | "open">("open");
-  const [photos, setPhotos] = useState<string[]>([strawHero, wheatImg, paddyImg]);
+  const [photos, setPhotos] = useState<string[]>([strawHero, wheatImg]);
   const [locationLabel, setLocationLabel] = useState<string | null>(null);
   const [agreed, setAgreed] = useState(false);
   const [posting, setPosting] = useState(false);
@@ -209,12 +209,6 @@ export function PostStrawPage() {
             />
           </div>
           <aside className="space-y-5 lg:sticky lg:top-24 lg:h-fit">
-            <NearbyBuyersPanel
-              buyers={nearbyBuyers}
-              loading={locating}
-              radiusKm={BUYER_RADIUS_KM}
-              locationLabel={displayLocation}
-            />
             <LivePreview
               strawMeta={strawMeta}
               qualityMeta={qualityMeta}
