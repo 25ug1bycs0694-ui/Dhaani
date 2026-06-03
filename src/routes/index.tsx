@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { FARMER_APP_PATH } from "@/lib/links";
+import { BUYER_APP_PATH, FARMER_APP_PATH } from "@/lib/links";
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/language-context";
@@ -157,15 +157,16 @@ function DhaaniLanding() {
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </Link>
               </motion.div>
-              <motion.button
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="group flex items-center gap-3 rounded-2xl bg-gradient-ember px-7 py-4 text-base font-semibold text-white shadow-ember transition"
-              >
-                <Briefcase className="h-5 w-5" />
-                {t.hero.buyerCta}
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </motion.button>
+              <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  to={BUYER_APP_PATH}
+                  className="group flex items-center gap-3 rounded-2xl bg-gradient-ember px-7 py-4 text-base font-semibold text-white shadow-ember transition"
+                >
+                  <Briefcase className="h-5 w-5" />
+                  {t.hero.buyerCta}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </Link>
+              </motion.div>
             </div>
 
             <div className="mt-10 flex items-center gap-4">
@@ -292,6 +293,7 @@ function DhaaniLanding() {
           />
           <RoleCard
             tone="ember"
+            href={BUYER_APP_PATH}
             badgeIcon={<Briefcase className="h-5 w-5" />}
             title={t.roles.buyerTitle}
             highlight={t.roles.buyerHighlight}
