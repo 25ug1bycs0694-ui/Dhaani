@@ -10,7 +10,11 @@ import {
 
 import appCss from "../styles.css?url";
 import { LanguageProvider } from "@/contexts/language-context";
+import { ChatProvider } from "@/contexts/chat-context";
+import { BuyerChatProvider } from "@/contexts/buyer-chat-context";
 import { Toaster } from "@/components/ui/sonner";
+import ChatModal from "@/components/ChatModal";
+import BuyerChatModal from "@/components/BuyerChatModal";
 
 function NotFoundComponent() {
   return (
@@ -118,8 +122,14 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
-        <Outlet />
-        <Toaster richColors position="top-center" />
+        <ChatProvider>
+          <BuyerChatProvider>
+            <Outlet />
+            <ChatModal />
+            <BuyerChatModal />
+            <Toaster richColors position="top-center" />
+          </BuyerChatProvider>
+        </ChatProvider>
       </LanguageProvider>
     </QueryClientProvider>
   );

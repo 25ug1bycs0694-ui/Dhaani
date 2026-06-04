@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { useLanguage } from "@/contexts/language-context";
+import { useChat } from "@/contexts/chat-context";
 import {
   LayoutDashboard,
   ListChecks,
@@ -163,6 +164,7 @@ const chats = [
 
 function Index() {
   const { locale } = useLanguage();
+  const { openChat } = useChat();
   const [activeOffer, setActiveOffer] = useState(0);
 
   // Get farmer data from localStorage (set on signup/login)
@@ -955,6 +957,17 @@ function Index() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => openChat(currentOffer.name, {
+                  id: currentOffer.name,
+                  name: currentOffer.name,
+                  type: currentOffer.type,
+                  location: currentOffer.location,
+                  distance: currentOffer.distance,
+                  price: currentOffer.price,
+                  listing: currentOffer.listing,
+                  iconBg: currentOffer.iconBg,
+                  iconFg: currentOffer.iconFg,
+                })}
                 style={{
                   width: "100%",
                   padding: "10px 0",
@@ -1576,6 +1589,15 @@ function Index() {
               {chats.map((c, idx) => (
                 <motion.button
                   key={c.name}
+                  onClick={() => openChat(c.name, {
+                    id: c.name,
+                    name: c.name,
+                    type: 'Buyer',
+                    location: 'Location',
+                    distance: 'Distance',
+                    price: 'Price',
+                    listing: 'Listing',
+                  })}
                   variants={itemVariants}
                   whileHover={{
                     backgroundColor: "rgba(26,74,46,0.03)",

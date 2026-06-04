@@ -1,14 +1,14 @@
-import { useChat } from '@/contexts/chat-context';
+import { useBuyerChat } from '@/contexts/buyer-chat-context';
 import {
   Dialog,
   DialogContent,
 } from '@/components/ui/dialog';
-import ConversationList from './chat/conversation-list';
-import ChatWindow from './chat/chat-window';
+import BuyerConversationList from './chat/buyer-conversation-list';
+import BuyerChatWindow from './chat/buyer-chat-window';
 import { cn } from '@/lib/utils';
 
-export default function ChatModal() {
-  const { isModalOpen, closeChat, selectedConversationId, selectConversation, selectedBuyerData } = useChat();
+export default function BuyerChatModal() {
+  const { isModalOpen, closeChat, selectedConversationId, selectConversation, selectedFarmerData } = useBuyerChat();
 
   return (
     <Dialog open={isModalOpen} onOpenChange={closeChat}>
@@ -23,7 +23,7 @@ export default function ChatModal() {
           "bg-background flex flex-col flex-shrink-0",
           "overflow-hidden"
         )}>
-          <ConversationList selectedId={selectedConversationId} onSelect={selectConversation} />
+          <BuyerConversationList selectedId={selectedConversationId} onSelect={selectConversation} />
         </div>
 
         {/* Chat Window - Main Content */}
@@ -32,10 +32,10 @@ export default function ChatModal() {
           "bg-background overflow-hidden"
         )}>
           {selectedConversationId ? (
-            <ChatWindow
+            <BuyerChatWindow
               conversationId={selectedConversationId}
-              buyerName={selectedBuyerData?.name || 'Green Energy Biogas'}
-              buyerInfo={`Verified Buyer • ${selectedBuyerData?.location || 'Panipat'} • ${selectedBuyerData?.distance || '41 km away'}`}
+              farmerName={selectedFarmerData?.name || 'Harpreet Singh'}
+              farmerInfo={`Verified Farmer • ${selectedFarmerData?.location || 'Karnal'} • ${selectedFarmerData?.distance || '38 km away'}`}
               onBack={() => closeChat()}
             />
           ) : (

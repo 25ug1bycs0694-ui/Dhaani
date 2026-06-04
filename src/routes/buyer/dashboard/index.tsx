@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
+import { useBuyerChat } from "@/contexts/buyer-chat-context";
 import {
   ArrowRight,
   Bell,
@@ -137,6 +138,7 @@ const chats = [
 ];
 
 function BuyerDashboard() {
+  const { openChat } = useBuyerChat();
   const [activeListing, setActiveListing] = useState(0);
   const [buyerData, setBuyerData] = useState<{
     companyName?: string;
@@ -846,6 +848,16 @@ function BuyerDashboard() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => openChat(currentListing.farmer, {
+                  id: currentListing.farmer,
+                  name: currentListing.farmer,
+                  type: 'Farmer',
+                  location: currentListing.location,
+                  distance: currentListing.distance,
+                  price: currentListing.price,
+                  listing: currentListing.listing,
+                  initials: currentListing.initials,
+                })}
                 style={{
                   width: "100%",
                   padding: "10px 0",
@@ -1385,6 +1397,16 @@ function BuyerDashboard() {
               {chats.map((c) => (
                 <motion.button
                   key={c.name}
+                  onClick={() => openChat(c.name, {
+                    id: c.name,
+                    name: c.name,
+                    type: 'Farmer',
+                    location: 'Location',
+                    distance: 'Distance',
+                    price: 'Price',
+                    listing: 'Listing',
+                    initials: c.initials,
+                  })}
                   variants={itemVariants}
                   whileHover={{ backgroundColor: "rgba(26,74,46,0.03)" }}
                   style={{
