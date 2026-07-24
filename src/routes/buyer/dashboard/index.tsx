@@ -648,44 +648,28 @@ function BuyerDashboard() {
                 Find quality straw and build your supply chain.
               </p>
               <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    background: "linear-gradient(135deg, #1a4a2e, #2a6b3e)",
-                    color: "white",
-                    fontSize: 13,
-                    fontWeight: 600,
-                    padding: "10px 20px",
-                    borderRadius: 10,
-                    border: "none",
-                    cursor: "pointer",
-                    boxShadow: "0 4px 14px rgba(26,74,46,0.3)",
-                    fontFamily: "inherit",
-                  }}
+                <Link
+                  to="/buyer/listings"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-gradient-hero px-5 py-3 text-sm font-semibold text-cream shadow-forest transition hover:opacity-90"
                 >
                   Browse Listings <ArrowRight size={14} />
-                </motion.button>
+                </Link>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 6,
-                    background: "white",
-                    color: "#1a3a2a",
-                    fontSize: 13,
-                    fontWeight: 600,
-                    padding: "10px 20px",
-                    borderRadius: 10,
-                    border: "1px solid rgba(0,0,0,0.12)",
-                    cursor: "pointer",
-                    fontFamily: "inherit",
-                  }}
+                  onClick={() =>
+                    openChat(currentListing.farmer, {
+                      id: currentListing.farmer,
+                      name: currentListing.farmer,
+                      type: "Farmer",
+                      location: currentListing.location,
+                      distance: currentListing.distance,
+                      price: currentListing.price,
+                      listing: currentListing.listing,
+                      initials: currentListing.initials,
+                    })
+                  }
+                  className="inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground"
                 >
                   View Offers <ArrowRight size={14} />
                 </motion.button>

@@ -103,6 +103,10 @@ export function PostStrawPage() {
 
   const strawMeta = strawTypes.find((s) => s.id === strawType)!;
   const qualityMeta = qualities.find((q) => q.id === quality)!;
+  const previewPhoto =
+    photos.length === 0 || strawTypes.some((s) => s.img === photos[0])
+      ? strawMeta.img
+      : photos[0];
 
   useEffect(() => {
     setLocationLabel(farmerRegion);
@@ -215,7 +219,7 @@ export function PostStrawPage() {
               quantity={quantity}
               price={price}
               location={displayLocation}
-              photo={photos[0]}
+              photo={previewPhoto}
             />
             <WhyCard />
             <SupportCard />

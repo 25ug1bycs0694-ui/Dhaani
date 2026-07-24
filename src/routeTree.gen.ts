@@ -14,6 +14,7 @@ import { Route as FarmerIndexRouteImport } from './routes/farmer/index'
 import { Route as BuyerIndexRouteImport } from './routes/buyer/index'
 import { Route as FarmerPostStrawIndexRouteImport } from './routes/farmer/post-straw/index'
 import { Route as FarmerDashboardIndexRouteImport } from './routes/farmer/dashboard/index'
+import { Route as BuyerListingsIndexRouteImport } from './routes/buyer/listings/index'
 import { Route as BuyerDashboardIndexRouteImport } from './routes/buyer/dashboard/index'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const FarmerDashboardIndexRoute = FarmerDashboardIndexRouteImport.update({
   path: '/farmer/dashboard/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BuyerListingsIndexRoute = BuyerListingsIndexRouteImport.update({
+  id: '/buyer/listings/',
+  path: '/buyer/listings/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BuyerDashboardIndexRoute = BuyerDashboardIndexRouteImport.update({
   id: '/buyer/dashboard/',
   path: '/buyer/dashboard/',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/buyer/': typeof BuyerIndexRoute
   '/farmer/': typeof FarmerIndexRoute
   '/buyer/dashboard/': typeof BuyerDashboardIndexRoute
+  '/buyer/listings/': typeof BuyerListingsIndexRoute
   '/farmer/dashboard/': typeof FarmerDashboardIndexRoute
   '/farmer/post-straw/': typeof FarmerPostStrawIndexRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/buyer': typeof BuyerIndexRoute
   '/farmer': typeof FarmerIndexRoute
   '/buyer/dashboard': typeof BuyerDashboardIndexRoute
+  '/buyer/listings': typeof BuyerListingsIndexRoute
   '/farmer/dashboard': typeof FarmerDashboardIndexRoute
   '/farmer/post-straw': typeof FarmerPostStrawIndexRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/buyer/': typeof BuyerIndexRoute
   '/farmer/': typeof FarmerIndexRoute
   '/buyer/dashboard/': typeof BuyerDashboardIndexRoute
+  '/buyer/listings/': typeof BuyerListingsIndexRoute
   '/farmer/dashboard/': typeof FarmerDashboardIndexRoute
   '/farmer/post-straw/': typeof FarmerPostStrawIndexRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/buyer/'
     | '/farmer/'
     | '/buyer/dashboard/'
+    | '/buyer/listings/'
     | '/farmer/dashboard/'
     | '/farmer/post-straw/'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/buyer'
     | '/farmer'
     | '/buyer/dashboard'
+    | '/buyer/listings'
     | '/farmer/dashboard'
     | '/farmer/post-straw'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/buyer/'
     | '/farmer/'
     | '/buyer/dashboard/'
+    | '/buyer/listings/'
     | '/farmer/dashboard/'
     | '/farmer/post-straw/'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   BuyerIndexRoute: typeof BuyerIndexRoute
   FarmerIndexRoute: typeof FarmerIndexRoute
   BuyerDashboardIndexRoute: typeof BuyerDashboardIndexRoute
+  BuyerListingsIndexRoute: typeof BuyerListingsIndexRoute
   FarmerDashboardIndexRoute: typeof FarmerDashboardIndexRoute
   FarmerPostStrawIndexRoute: typeof FarmerPostStrawIndexRoute
 }
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FarmerDashboardIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/buyer/listings/': {
+      id: '/buyer/listings/'
+      path: '/buyer/listings'
+      fullPath: '/buyer/listings/'
+      preLoaderRoute: typeof BuyerListingsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/buyer/dashboard/': {
       id: '/buyer/dashboard/'
       path: '/buyer/dashboard'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   BuyerIndexRoute: BuyerIndexRoute,
   FarmerIndexRoute: FarmerIndexRoute,
   BuyerDashboardIndexRoute: BuyerDashboardIndexRoute,
+  BuyerListingsIndexRoute: BuyerListingsIndexRoute,
   FarmerDashboardIndexRoute: FarmerDashboardIndexRoute,
   FarmerPostStrawIndexRoute: FarmerPostStrawIndexRoute,
 }
